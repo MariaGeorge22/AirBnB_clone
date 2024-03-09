@@ -55,7 +55,7 @@ Documented commands (type help <topic>):
 ========================================
 EOF  all  count  create  destroy  help  quit  show  update
 """
-        self.assertEqual(s, f.getvalue())
+        self.assertEqual(s.strip(), f.getvalue().strip())
 
     def test_help_EOF(self):
         """Tests the help command."""

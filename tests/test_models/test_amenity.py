@@ -5,17 +5,15 @@ from models.base_model import BaseModel
 from models.amenity import Amenity
 
 
-class TestAmenityClass(unittest.TestCase):
+class TestAmenity(unittest.TestCase):
     """ Cases that will be tested for Amenity class """
 
-    def set_up(self):
+    def setUp(self):
         """Set up the test environment"""
         # Creating an instance of AmenityClass for testing
         self.amenity = Amenity()
 
     def test_amenity_is_a_subclass_of_base_model(self):
-        """Test if AmenityClass is a subclass of MyBaseModel"""
-        # Checking if AmenityClass is a subclass of MyBaseModel
         self.assertTrue(issubclass(type(self.amenity), BaseModel))
 
     def TestClassAttr(self):
