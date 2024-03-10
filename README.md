@@ -1,1 +1,1 @@
-This README file is for AirBNB Project.
+This README file is for AirBNB.
