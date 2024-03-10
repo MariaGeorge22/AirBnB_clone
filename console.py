@@ -179,8 +179,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        bla_bla = r'^(\S+)(?:\s(\S+)(?:\s(\S+)(?:\s((?:"[^"]*")|(?:(\S)+)))?)?)?'
-        match = re.search(bla_bla, line)
+        bla = r'^(\S+)(?:\s(\S+)(?:\s(\S+)(?:\s((?:"[^"]*")|(?:(\S)+)))?)?)?'
+        match = re.search(bla, line)
         class_name = match.group(1)
         uniqueId = match.group(2)
         attribute = match.group(3)
