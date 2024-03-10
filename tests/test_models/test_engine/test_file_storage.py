@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Test Suite for FileStorage in models/file_storage.py"""
+"""file storage test cases """
 import os.path
 import unittest
 
@@ -16,32 +16,57 @@ from models.place import Place
 
 
 class TestFileStorageInit(unittest.TestCase):
-    """Contains test cases against the FileStorage initialization"""
+    """FileStorage class """
 
     def test_file_path_is_a_private_class_attr(self):
-        """Checks that file_path is a private class attribute"""
+        """
+        Checks that file_path is a private class attribute.
+
+        It verifies that the FileStorage class does not
+        expose the file_path attribute.
+        """
         self.assertFalse(hasattr(FileStorage(), "__file_path"))
 
     def test_objects_is_a_private_class_attr(self):
-        """Checks that objects is a private class attribute"""
+        """
+        Checks that objects is a private class attribute.
+
+        It verifies that the FileStorage class does not
+        expose the __objects attribute.
+        """
         self.assertFalse(hasattr(FileStorage(), "__objects"))
 
     def test_init_without_arg(self):
-        """Tests initialization without args"""
+        """
+        Tests initialization without arguments.
+
+        It verifies that FileStorage can be
+        instantiated without arguments.
+        """
         self.assertEqual(type(FileStorage()), FileStorage)
 
     def test_init_with_arg(self):
-        """Tests initialization with args"""
+        """
+        Tests initialization with arguments.
+
+        It verifies that FileStorage raises a TypeError
+        when instantiated with arguments.
+        """
         with self.assertRaises(TypeError):
             FileStorage(None)
 
     def test_storage_initialization(self):
-        """Tests storage created in __init__.py"""
+        """
+        Tests the storage initialization created in __init__.py.
+
+        It ensures that the storage instance created
+        in __init__.py is of type FileStorage.
+        """
         self.assertEqual(type(models.storage), FileStorage)
 
 
 class TestStorageMethods(unittest.TestCase):
-    """Contains test cases against the methods present in FileStorage"""
+    """ FileStorage against """
 
     @classmethod
     def setUp(self):
@@ -53,7 +78,12 @@ class TestStorageMethods(unittest.TestCase):
 
     @classmethod
     def tearDown(self):
-        """Code to execute after tests are executed"""
+        """
+        Code to execute after tests are executed.
+
+        This method is called after each test method
+        and performs cleanup operations.
+        """
         # Remove file.json if it exists
         try:
             os.remove("file.json")
@@ -69,7 +99,18 @@ class TestStorageMethods(unittest.TestCase):
         FileStorage._FileStorage__objects = {}
 
     def test_all_method(self):
-        """Tests all() method of the FileStorage class"""
+        """
+        Tests the all() method of the FileStorage class.
+
+        Checks if the all() method returns a dictionary
+        containing all objects
+        stored in the FileStorage instance.
+
+        Raises:
+            AssertionError: If the method does not return
+            a dictionary or if an
+            argument is passed, which should raise a TypeError
+        """
         self.assertTrue(type(models.storage.all()) is dict)
 
         # If an arg is passed, TypeError is raised
@@ -77,7 +118,18 @@ class TestStorageMethods(unittest.TestCase):
             models.storage.all(None)
 
     def test_new_method(self):
-        """Tests the new() method of the FileStorage class"""
+        """
+        Tests the new() method of the FileStorage class.
+
+        Creates instances of all supported classes and checks if the new()
+        method correctly adds them to the storage.
+
+        Raises:
+            AssertionError: If an instance is not added to the storage, if more
+                             than one argument is passed, or if None is passed,
+                             which should raise TypeError and AttributeError
+                             respectively.
+        """
         dummy_bm = BaseModel()
         dummy_user = User()
         dummy_state = State()
@@ -114,7 +166,17 @@ class TestStorageMethods(unittest.TestCase):
             models.storage.new(None)
 
     def test_save_method(self):
-        """Dealing with reload() method in FileStorage class"""
+        """
+        Tests the save() method of the FileStorage class.
+
+        Creates instances of all supported classes, saves them using the
+        save() method, and checks if they are correctly stored in the file.
+
+        Raises:
+            AssertionError: If instances are not
+            correctly saved in the file or
+            if an argument is passed, which should raise a TypeError.
+        """
         dummy_bm = BaseModel()
         dummy_user = User()
         dummy_state = State()
@@ -140,7 +202,18 @@ class TestStorageMethods(unittest.TestCase):
             models.storage.save(None)
 
     def test_reload_method(self):
-        """Tests the reload method"""
+        """
+        Tests the reload method of the FileStorage class.
+
+        Saves the current state of the storage, reloads it using the reload()
+        method, and checks if the objects are correctly
+        loaded back into the storage.
+
+        Raises:
+            AssertionError: If objects are not correctly
+            reloaded into the storage
+            or if an argument is passed, which should raise a TypeError.
+        """
         dummy_bm = BaseModel()
         dummy_user = User()
         dummy_state = State()
