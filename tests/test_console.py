@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module for TestHBNBCommand class."""
 
+import json
 from console import HBNBCommand
 from models.engine.file_storage import FileStorage
 import unittest
@@ -10,7 +11,6 @@ import sys
 from io import StringIO
 import re
 import os
-import json
 
 
 class TestHBNBCommand(unittest.TestCase):
@@ -55,7 +55,6 @@ class TestHBNBCommand(unittest.TestCase):
 Documented commands (type help <topic>):
 ========================================
 EOF  all  count  create  destroy  help  quit  show  update
-
 """
         self.assertEqual(s, f.getvalue())
 
