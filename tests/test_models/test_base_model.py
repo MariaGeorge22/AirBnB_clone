@@ -65,6 +65,7 @@ class TestMyBaseModel(unittest.TestCase):
     def test_attributes(self):
         """Tests the BaseModel attributes"""
         my_model = BaseModel()
+        self.assertTrue(hasattr(my_model, "id"))
         self.assertTrue(hasattr(my_model, "created_at"))
         self.assertTrue(hasattr(my_model, "updated_at"))
 
