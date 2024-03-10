@@ -1,30 +1,26 @@
 #!/usr/bin/python3
-""" Console """
+"""Module for the entry point of the command interpreter."""
 
 import cmd
-import re
-import json
-
 from models.base_model import BaseModel
 from models import storage
+import re
+import json
 
 
 class HBNBCommand(cmd.Cmd):
 
+    """Class for the command interpreter."""
+
     prompt = "(hbnb) "
 
     def default(self, line):
-        # Intercepting commands to test for class.syntax()
-        # Parsing commands to determine class.method() format
-        # Invoking proper methods based on command format
+        """Catch commands if nothing else matches then."""
         # print("DEF:::", line)
         self._precmd(line)
 
     def _precmd(self, line):
-        # Intercepting commands to detect if they match class.method() syntax
-        # Extracting class name, method, and arguments from the command
-        # Handling method 'update' with attributes and/or dictionary format
-        # Constructing and executing a command based on class.method() format
+        """Intercepts commands to test for class.syntax()"""
         # print("PRECMD:::", line)
         match = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
         if not match:
@@ -56,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
         return command
 
     def update_dict(self, classname, uid, s_dict):
-        # Helper method to facilitate updating instances with dictionary format
+        """Helper method for update() with a dictionary."""
         s = s_dict.replace("'", '"')
         d = json.loads(s)
         if not classname:
@@ -78,20 +74,24 @@ class HBNBCommand(cmd.Cmd):
                 storage.all()[key].save()
 
     def do_EOF(self, line):
-        # Exiting gracefully when EOF character is encountered
+        """Handles End Of File character.
+        """
         print()
         return True
 
     def do_quit(self, line):
-        # Command to exit the program
+        """Exits the program.
+        """
         return True
 
     def emptyline(self):
-        # Behavior on pressing ENTER without typing a command
+        """Doesn't do anything on ENTER.
+        """
         pass
 
     def do_create(self, line):
-        # Command to create an instance of a class
+        """Creates an instance.
+        """
         if line == "" or line is None:
             print("** class name missing **")
         elif line not in storage.classes():
@@ -102,7 +102,8 @@ class HBNBCommand(cmd.Cmd):
             print(b.id)
 
     def do_show(self, line):
-        # Command to print the string representation of an instance
+        """Prints the string representation of an instance.
+        """
         if line == "" or line is None:
             print("** class name missing **")
         else:
@@ -119,7 +120,8 @@ class HBNBCommand(cmd.Cmd):
                     print(storage.all()[key])
 
     def do_destroy(self, line):
-        # Command to delete an instance based on class name and id
+        """Deletes an instance based on the class name and id.
+        """
         if line == "" or line is None:
             print("** class name missing **")
         else:
@@ -137,22 +139,23 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
 
     def do_all(self, line):
-        # Command to print string representations of all instances
+        """Prints all string representation of all instances.
+        """
         if line != "":
             words = line.split(' ')
             if words[0] not in storage.classes():
                 print("** class doesn't exist **")
             else:
-                my_list = [str(obj) for key, obj in storage.all().items()
-                           if type(obj).__name__ == words[0]]
-
-                print(my_list)
+                l = [str(obj) for key, obj in storage.all().items()
+                     if type(obj).__name__ == words[0]]
+                print(l)
         else:
-            my_list = [str(obj) for key, obj in storage.all().items()]
-            print(my_list)
+            l = [str(obj) for key, obj in storage.all().items()]
+            print(l)
 
     def do_count(self, line):
-        # Command to count instances of a class
+        """Counts the instances of a class.
+        """
         words = line.split(' ')
         if not words[0]:
             print("** class name missing **")
@@ -165,7 +168,8 @@ class HBNBCommand(cmd.Cmd):
             print(len(matches))
 
     def do_update(self, line):
-        # Command to update an instance with new or modified attribute
+        """Updates an instance by adding or updating attribute.
+        """
         if line == "" or line is None:
             print("** class name missing **")
             return
