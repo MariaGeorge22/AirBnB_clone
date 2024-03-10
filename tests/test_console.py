@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Module for TestHBNBCommand class."""
 
-import json
 from console import HBNBCommand
 from models.engine.file_storage import FileStorage
 import unittest
@@ -669,16 +668,6 @@ EOF  all  count  create  destroy  help  quit  show  update
         uid = f.getvalue()[:-1]
         self.assertTrue(len(uid) > 0)
         return uid
-
-    def help_load_dict(self, rep):
-        """Helper method to test dictionary equality."""
-        rex = re.compile(r"^\[(.*)\] \((.*)\) (.*)$")
-        res = rex.match(rep)
-        self.assertIsNotNone(res)
-        s = res.group(3)
-        s = re.sub(r"(datetime\.datetime\([^)]*\))", "'\\1'", s)
-        d = json.loads(s.replace("'", '"'))
-        return d
 
     def classes(self):
         """Returns a dictionary of valid classes and their references."""
