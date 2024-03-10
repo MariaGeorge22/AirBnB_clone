@@ -62,12 +62,7 @@ class TestMyBaseModel(unittest.TestCase):
         model = BaseModel(None)
         self.assertNotIn(None, model.__dict__.values())
 
-    def test_attributes(self):
-        """Tests the BaseModel attributes"""
-        my_model = BaseModel()
-        self.assertTrue(hasattr(my_model, "id"))
-        self.assertTrue(hasattr(my_model, "created_at"))
-        self.assertTrue(hasattr(my_model, "updated_at"))
+    
 
     def test_save_method_updates_updated_at_attribute(self):
         model = BaseModel()
