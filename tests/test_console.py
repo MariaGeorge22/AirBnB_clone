@@ -677,8 +677,8 @@ EOF  all  count  create  destroy  help  quit  show  update
         self.assertIsNotNone(res)
         s = res.group(3)
         s = re.sub(r"(datetime\.datetime\([^)]*\))", "'\\1'", s)
-        d = json.loads(s.replace("'", '"'))
-        return d
+        # d = json.loads(s.replace("'", '"'))
+         # return d
 
     def classes(self):
         """Returns a dictionary of valid classes and their references."""
