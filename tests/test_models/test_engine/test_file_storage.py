@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""file storage test cases """
+"""base model """
 import os.path
 import unittest
 
