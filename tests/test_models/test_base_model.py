@@ -58,7 +58,8 @@ class TestMyBaseModel(unittest.TestCase):
     def test_created_at_is_datetime_object(self):
         """
         Raises:
-            AssertionError: If the 'created_at' attribute is not a datetime object.
+            AssertionError: If the 'created_at'
+            attribute is not a datetime object.
         """
         instance = BaseModel()
         self.assertTrue(type(instance.created_at) is datetime)
