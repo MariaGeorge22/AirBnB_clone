@@ -9,17 +9,14 @@ class TestAmenity(unittest.TestCase):
     """ Cases that will be tested for Amenity class """
 
     def setUp(self):
-        """Set up the test environment"""
         self.amenity = Amenity()
 
-    def test_amenity_is_a_subclass_of_base_model(self):
+    def test_amenity_is_a_subclass_of_basemodel(self):
         self.assertTrue(issubclass(type(self.amenity), BaseModel))
 
-    def TestAttr_isA_ClassAttr(self):
-        """Test if 'name' is a class attribute of AmenityClass"""
+    def test_attr_is_a_class_attr(self):
         self.assertTrue(hasattr(self.amenity, "name"))
 
-    def TestClassAttr(self):
-        """Test the properties of the 'name' class attribute"""
+    def test_class_attr(self):
         self.assertIs(type(self.amenity.name), str)
         self.assertFalse(bool(getattr(self.amenity, "name")))
