@@ -1,1 +1,1 @@
-THis README file is for web_static project
+THis README file is for web_static projectm
